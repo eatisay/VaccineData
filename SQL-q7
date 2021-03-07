@@ -1,0 +1,11 @@
+UPDATE TABLE
+   SET dailly_vaccinations = 
+   				SELECT MT
+   				FROM
+   				(
+   				SELECT IF(MEDIAN(t.dailly_vaccinations) IS NOT NULL, MEDIAN(t.dailly_vaccinations), 0) as MT, country as CT
+                FROM TABLE t
+               	GROUP BY country
+                )
+                WHERE country==CT
+ WHERE dailly_vaccinations IS NULL
